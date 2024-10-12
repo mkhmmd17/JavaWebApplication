@@ -2,6 +2,7 @@ package org.oreilly.com.spring_and_spring_boot_course.services;
 
 
 import org.oreilly.com.spring_and_spring_boot_course.json.AstroResponse;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ public class AstroService {
     private final RestTemplate template;
     private final WebClient client;
 
-    public AstroService(RestTemplateBuilder builder) { //Buillder is Singleton
-        this.template = builder.rootUri("http://api.open-notify.org").build();
+    public AstroService(@Qualifier("astroRestTemplate") RestTemplate template) { //Buillder is Singleton
+        this.template = template;
         this.client = WebClient.create("http://api.open-notify.org");
     }
 

@@ -1,9 +1,12 @@
 package org.oreilly.com.spring_and_spring_boot_course;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,6 +29,11 @@ class SpringAndSpringBootCourseApplicationTests {
         assertTrue(context.containsBean("restTemplateBuilder"));
     }
 
+    @Test @Disabled
+    void getBean() {
+        assertThrows(NoSuchBeanDefinitionException.class,
+                () -> context.getBean(RestTemplate.class));
+    }
 
 
 }
