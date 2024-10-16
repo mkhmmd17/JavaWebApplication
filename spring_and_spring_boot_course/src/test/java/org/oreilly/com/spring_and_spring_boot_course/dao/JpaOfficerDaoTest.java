@@ -15,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-class JdbcOfficerDaoTest {
+class JpaOfficerDaoTest {
 
     @Autowired
-    private JdbcOfficerDao dao;
+    private JpaOfficerDao dao;
 
     @Autowired
     private JdbcTemplate template;

@@ -5,13 +5,11 @@ import org.oreilly.com.spring_and_spring_boot_course.entities.Rank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import java.sql.JDBCType;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -43,9 +41,9 @@ public class JdbcOfficerDao implements OfficerDAO {
         Number newId = insertOfficer.executeAndReturnKey(parameters);
         return new Officer(
                 newId.intValue(),
-                officer.rank(),
-                officer.firstName(),
-                officer.lastName());
+                officer.getRank(),
+                officer.getFirstName(),
+                officer.getLastName());
     }
 
     @Override
@@ -73,7 +71,7 @@ public class JdbcOfficerDao implements OfficerDAO {
 
     @Override
     public void delete(Officer officer) {
-        jdbcTemplate.update("DELETE FROM officers WHERE id=?", officer.id());
+        jdbcTemplate.update("DELETE FROM officers WHERE id=?", officer.getId());
     }
 
     @Override
